@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathvik Reddy - Student Portal | Mohan Babu University</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mbu: {
+                            blue: '#003366',
+                            gold: '#D4AF37',
+                            light: '#f4f6f9',
+                            dark: '#0f172a',
+                            cardDark: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-100 font-sans min-h-full flex flex-col transition-colors duration-300">
+
+    <!-- Navigation Header -->
+    <header class="bg-mbu-blue text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Branding -->
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white p-2 rounded-xl shadow-md flex items-center justify-center">
+                        <i class="fa-solid font-bold text-2xl text-mbu-blue fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold tracking-wide text-white">MOHAN BABU UNIVERSITY</div>
+                        <div class="text-xs text-mbu-gold font-medium tracking-wider uppercase">School of Computing | Data Science</div>
+                    </div>
+                </div>
+
+                <!-- Right Side Profile Info & Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full bg-blue-900/50 hover:bg-blue-800 text-gray-200 transition-all focus:outline-none" title="Toggle Theme">
+                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- Student Quick Tag -->
+                    <div class="hidden md:flex items-center space-x-3 bg-blue-900/60 border border-blue-700/50 px-3.5 py-1.5 rounded-full">
+                        <div class="w-8 h-8 rounded-full bg-mbu-gold text-mbu-blue flex items-center justify-center font-bold text-sm">
+                            SR
+                        </div>
+                        <div class="text-left text-xs">
+                            <p class="font-semibold text-white leading-tight">Sathvik Reddy</p>
+                            <p class="text-gray-300">24102A030075 | <span class="text-mbu-gold font-semibold">Sem V</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Student Hero Profile Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-mbu-blue to-slate-800 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+                <i class="fa-solid fa-brain text-[240px]"></i>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8 relative z-10">
+                <!-- Avatar -->
+                <div class="relative group">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-tr from-mbu-gold to-yellow-200 p-1 shadow-2xl">
+                        <div class="w-full h-full bg-slate-800 rounded-xl flex items-center justify-center text-4xl font-extrabold text-mbu-gold border border-slate-700">
+                            SR
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-emerald-500 border-2 border-slate-900 w-4 h-4 rounded-full" title="Active Student"></span>
+                </div>
+
+                <!-- Info Details -->
+                <div class="flex-1 text-center md:text-left space-y-2">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Sathvik Reddy</h1>
+                        <span class="bg-mbu-gold text-mbu-blue text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Active</span>
+                        <span class="bg-blue-600/60 text-white text-xs font-medium px-2.5 py-1 rounded-md">B.Tech - CSE (Data Science)</span>
+                    </div>
+
+                    <p class="text-gray-300 text-sm max-w-2xl">
+                        Roll Number: <span class="font-mono text-mbu-gold font-semibold">24102A030075</span> &bull; 
+                        Academic Year: <span class="text-white font-medium">3rd Year (Semester V)</span> &bull; 
+                        Department of Computer Science
+                    </p>
+
+                    <!-- Quick Metrics Chips -->
+                    <div class="pt-3 flex flex-wrap gap-3 justify-center md:justify-start text-xs font-medium">
+                        <div class="bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-lg flex items-center gap-2">
+                            <i class="fa-solid fa-award text-mbu-gold"></i>
+                            <span>Current CGPA: <strong class="text-white text-sm">8.72</strong></span>
+                        </div>
+                        <div class="bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-lg flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-emerald-400"></i>
+                            <span>Sem V Attendance: <strong class="text-emerald-400 text-sm">88.5%</strong></span>
+                        </div>
+                        <div class="bg-slate-800/80 border border-slate-700 px-3.5 py-2 rounded-lg flex items-center gap-2">
+                            <i class="fa-solid fa-user-tie text-blue-400"></i>
+                            <span>Mentor: <strong class="text-white">Prof. Bosu Babu</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row md:flex-col gap-2 w-full sm:w-auto">
+                    <button onclick="downloadTranscript()" class="bg-mbu-gold hover:bg-yellow-500 text-mbu-blue font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down"></i> Sem V Grade Card
+                    </button>
+                    <button onclick="openMentorModal()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comments"></i> Contact Mentor
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="border-b border-gray-200 dark:border-slate-800">
+            <nav class="flex space-x-2 sm:space-x-6 overflow-x-auto pb-1 custom-scrollbar" aria-label="Tabs">
+                <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="tab-btn active border-mbu-blue text-mbu-blue dark:text-mbu-gold border-b-2 font-semibold text-sm py-3 px-3 whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line"></i> Semester Dashboard
+                </button>
+                <button onclick="switchTab('curriculum')" id="tab-btn-curriculum" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm py-3 px-3 whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark"></i> Sem V Curriculum
+                </button>
+                <button onclick="switchTab('labs')" id="tab-btn-labs" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm py-3 px-3 whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-flask"></i> Lab Experiments
+                </button>
+                <button onclick="switchTab('assignments')" id="tab-btn-assignments" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm py-3 px-3 whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> Assignments & Portal
+                </button>
+                <button onclick="switchTab('mentor')" id="tab-btn-mentor" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm py-3 px-3 whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-user-graduate"></i> Faculty Mentor
+                </button>
+            </nav>
+        </div>
+
+        <!-- TAB CONTENT SECTION -->
+        <div id="tab-contents">
+            
+            <!-- TAB 1: DASHBOARD OVERVIEW -->
+            <div id="content-dashboard" class="tab-content space-y-6">
+                <!-- 4 Stats Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Current Semester</p>
+                                <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mt-1">Semester V</h3>
+                            </div>
+                            <div class="p-3 bg-blue-50 dark:bg-slate-700 rounded-xl text-mbu-blue dark:text-mbu-gold">
+                                <i class="fa-solid fa-layer-group text-xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-3 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i> 22 Credits Enrolled
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Cumulative GPA</p>
+                                <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mt-1">8.72 <span class="text-xs text-gray-400 font-normal">/ 10</span></h3>
+                            </div>
+                            <div class="p-3 bg-amber-50 dark:bg-slate-700 rounded-xl text-amber-500">
+                                <i class="fa-solid fa-graduation-cap text-xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-3 flex items-center gap-1">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +0.18 from Sem IV
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Overall Attendance</p>
+                                <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mt-1">88.5%</h3>
+                            </div>
+                            <div class="p-3 bg-emerald-50 dark:bg-slate-700 rounded-xl text-emerald-500">
+                                <i class="fa-solid fa-calendar-check text-xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-3 flex items-center gap-1">
+                            <i class="fa-solid fa-shield-check"></i> Safe Zone (>75% requirement)
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Pending Labs & Work</p>
+                                <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mt-1">2 Pending</h3>
+                            </div>
+                            <div class="p-3 bg-purple-50 dark:bg-slate-700 rounded-xl text-purple-500">
+                                <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-amber-600 dark:text-amber-400 font-medium mt-3 flex items-center gap-1">
+                            <i class="fa-solid fa-triangle-exclamation"></i> ML Lab Task due in 2 days
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Academic GPA Growth Chart -->
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-gray-900 dark:text-white">Academic Performance Progression</h3>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Semester-wise GPA track up to Semester V</p>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-mbu-blue dark:bg-slate-700 dark:text-mbu-gold rounded-full">Data Science Major</span>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="gpaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Breakup Doughnut -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-base font-bold text-gray-900 dark:text-white">Attendance Ratio</h3>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded">Good</span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Semester V Total Lectures Attended</p>
+                            <div class="h-48 relative flex items-center justify-center">
+                                <canvas id="attendanceChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-slate-700 text-center text-xs">
+                            <div>
+                                <p class="text-gray-500 dark:text-gray-400">Attended</p>
+                                <p class="text-base font-bold text-emerald-600 dark:text-emerald-400">146 hrs</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 dark:text-gray-400">Missed</p>
+                                <p class="text-base font-bold text-rose-500">19 hrs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timetable & Today's Schedule -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-gray-100 dark:border-slate-700 gap-3">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Semester V Daily Schedule</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Class timetable for Machine Learning & Big Data Tracks</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold px-3 py-1.5 bg-mbu-blue text-white rounded-lg">Today: Friday</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+                        <div class="p-4 rounded-xl border border-l-4 border-l-mbu-blue border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/40">
+                            <span class="text-xs font-bold text-mbu-blue dark:text-mbu-gold">09:00 AM - 10:00 AM</span>
+                            <h4 class="font-bold text-sm mt-1 text-gray-900 dark:text-white">Machine Learning</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-location-dot"></i> Room CSE-302</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 font-medium mt-2">Dr. V. K. Sharma</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-l-4 border-l-amber-500 border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/40">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400">10:15 AM - 11:15 AM</span>
+                            <h4 class="font-bold text-sm mt-1 text-gray-900 dark:text-white">Big Data Analytics</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-location-dot"></i> Room CSE-305</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 font-medium mt-2">Prof. Bosu Babu</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-l-4 border-l-emerald-500 border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/40">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">11:30 AM - 01:15 PM</span>
+                            <h4 class="font-bold text-sm mt-1 text-gray-900 dark:text-white">Deep Learning Practical</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-desktop"></i> Data Science Lab 2</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 font-medium mt-2">Dr. S. Ramesh</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-l-4 border-l-purple-500 border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/40">
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400">02:15 PM - 04:00 PM</span>
+                            <h4 class="font-bold text-sm mt-1 text-gray-900 dark:text-white">Cloud Computing Lab</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-cloud"></i> High-Perf Computing Lab</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 font-medium mt-2">Prof. K. Anitha</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SEMESTER V CURRICULUM -->
+            <div id="content-curriculum" class="tab-content hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100 dark:border-slate-700">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white">Semester V Course Curriculum (Data Science Track)</h2>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Mohan Babu University - Dept of Computer Science & Engineering</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold bg-blue-100 text-mbu-blue dark:bg-slate-700 dark:text-mbu-gold px-3 py-1.5 rounded-lg">Total Credits: 22</span>
+                        </div>
+                    </div>
+
+                    <!-- Course Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 dark:bg-slate-700/50 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase tracking-wider">
+                                    <th class="p-3.5 rounded-l-lg">Subject Code</th>
+                                    <th class="p-3.5">Course Title</th>
+                                    <th class="p-3.5">Type</th>
+                                    <th class="p-3.5">L-T-P</th>
+                                    <th class="p-3.5">Credits</th>
+                                    <th class="p-3.5">Faculty In-Charge</th>
+                                    <th class="p-3.5 rounded-r-lg text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 dark:divide-slate-700/60 text-sm">
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS501DS</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Machine Learning Algorithms</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 rounded">Core Theory</span></td>
+                                    <td class="p-3.5 text-xs font-mono">3-0-0</td>
+                                    <td class="p-3.5 font-bold">3</td>
+                                    <td class="p-3.5 text-xs">Dr. V. K. Sharma</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS502DS</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Big Data Analytics & Ecosystems</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 rounded">Core Theory</span></td>
+                                    <td class="p-3.5 text-xs font-mono">3-0-0</td>
+                                    <td class="p-3.5 font-bold">3</td>
+                                    <td class="p-3.5 text-xs font-medium text-amber-600 dark:text-amber-400">Prof. Bosu Babu</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS503DS</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Deep Learning Frameworks</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 rounded">Specialization</span></td>
+                                    <td class="p-3.5 text-xs font-mono">3-0-2</td>
+                                    <td class="p-3.5 font-bold">4</td>
+                                    <td class="p-3.5 text-xs">Dr. S. Ramesh</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS504PE</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Cloud Computing Architecture</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 rounded">Elective I</span></td>
+                                    <td class="p-3.5 text-xs font-mono">3-0-0</td>
+                                    <td class="p-3.5 font-bold">3</td>
+                                    <td class="p-3.5 text-xs">Prof. K. Anitha</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS505MP</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Data Science Mini Project (Phase I)</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded">Project Work</span></td>
+                                    <td class="p-3.5 text-xs font-mono">0-0-6</td>
+                                    <td class="p-3.5 font-bold">3</td>
+                                    <td class="p-3.5 text-xs font-medium text-amber-600 dark:text-amber-400">Prof. Bosu Babu</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">Active</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20HS501HS</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Professional Ethics & Human Values</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-800 dark:bg-slate-700 dark:text-gray-300 rounded">Humanities</span></td>
+                                    <td class="p-3.5 text-xs font-mono">2-0-0</td>
+                                    <td class="p-3.5 font-bold">2</td>
+                                    <td class="p-3.5 text-xs">Dr. M. Gayatri</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                                    <td class="p-3.5 font-mono text-xs font-bold text-mbu-blue dark:text-mbu-gold">20CS501L</td>
+                                    <td class="p-3.5 font-semibold text-gray-900 dark:text-white">Machine Learning & Big Data Lab</td>
+                                    <td class="p-3.5"><span class="px-2 py-0.5 text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 rounded">Practical</span></td>
+                                    <td class="p-3.5 text-xs font-mono">0-0-4</td>
+                                    <td class="p-3.5 font-bold">2</td>
+                                    <td class="p-3.5 text-xs">Dr. V. K. Sharma / Prof. Bosu Babu</td>
+                                    <td class="p-3.5 text-right"><span class="px-2 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-md">In Progress</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: LAB EXPERIMENTS TRACKER -->
+            <div id="content-labs" class="tab-content hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white">Semester V Practical Lab Tracker</h2>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Track execution and submission status for Machine Learning & Big Data practicals</p>
+                        </div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                            Completed: <span class="font-bold text-emerald-600 dark:text-emerald-400 text-sm">6 / 8</span> Practicals
+                        </div>
+                    </div>
+
+                    <!-- List of Experiments -->
+                    <div class="space-y-4">
+                        <!-- Exp 1 -->
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-700/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mt-0.5">
+                                    01
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Linear & Logistic Regression Models on Real Datasets</h4>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Course: Machine Learning Lab &bull; Python, Scikit-Learn</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold rounded-md">Verified (10/10)</span>
+                                <button onclick="viewLabCode(1)" class="text-xs font-semibold text-mbu-blue dark:text-mbu-gold hover:underline">View Code</button>
+                            </div>
+                        </div>
+
+                        <!-- Exp 2 -->
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-700/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mt-0.5">
+                                    02
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Decision Trees & Random Forest Classifier Pipeline</h4>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Course: Machine Learning Lab &bull; Hyperparameter Tuning</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold rounded-md">Verified (9.5/10)</span>
+                                <button onclick="viewLabCode(2)" class="text-xs font-semibold text-mbu-blue dark:text-mbu-gold hover:underline">View Code</button>
+                            </div>
+                        </div>
+
+                        <!-- Exp 3 -->
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-700/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mt-0.5">
+                                    03
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">MapReduce Program for Word Count & Log Analysis</h4>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Course: Big Data Lab &bull; Hadoop Ecosystem, Java</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold rounded-md">Verified (10/10)</span>
+                                <button onclick="viewLabCode(3)" class="text-xs font-semibold text-mbu-blue dark:text-mbu-gold hover:underline">View Code</button>
+                            </div>
+                        </div>
+
+                        <!-- Exp 4 -->
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-700/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mt-0.5">
+                                    04
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">PySpark Dataframe Transformations & Streaming</h4>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Course: Big Data Lab &bull; Apache Spark, Python</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold rounded-md">Verified (10/10)</span>
+                                <button onclick="viewLabCode(4)" class="text-xs font-semibold text-mbu-blue dark:text-mbu-gold hover:underline">View Code</button>
+                            </div>
+                        </div>
+
+                        <!-- Exp 5 - Pending -->
+                        <div class="p-4 rounded-xl border border-amber-300 dark:border-amber-700/60 bg-amber-50/30 dark:bg-amber-950/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-400 flex items-center justify-center font-bold text-xs mt-0.5">
+                                    05
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Convolutional Neural Network (CNN) for Image Classification</h4>
+                                    <p class="text-xs text-amber-700 dark:text-amber-400 mt-0.5">Course: Deep Learning Lab &bull; TensorFlow / Keras &bull; Due in 2 Days</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xs px-2.5 py-1 bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300 font-semibold rounded-md">Submitted - Review Pending</span>
+                                <button onclick="openAssignmentModal('CNN Classification Lab')" class="text-xs font-semibold px-3 py-1.5 bg-mbu-blue text-white rounded-lg hover:bg-blue-900">Re-submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: ASSIGNMENTS & SUBMISSIONS PORTAL -->
+            <div id="content-assignments" class="tab-content hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white">Semester V Assignment Portal</h2>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Upload and track coursework for 5th semester modules</p>
+                        </div>
+                        <button onclick="openAssignmentModal('General Coursework')" class="bg-mbu-blue hover:bg-blue-900 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Assignment
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-2 py-0.5 bg-blue-100 text-mbu-blue dark:bg-slate-700 dark:text-mbu-gold rounded">20CS502DS</span>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Big Data Architecture Case Study</h4>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Faculty: Prof. Bosu Babu &bull; Submitted: Oct 04, 2026</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-circle-check"></i> Graded: 95/100</span>
+                                <button class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 font-medium">View Feedback</button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-gray-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-2 py-0.5 bg-blue-100 text-mbu-blue dark:bg-slate-700 dark:text-mbu-gold rounded">20CS501DS</span>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Support Vector Machines & Kernel Tricks</h4>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Faculty: Dr. V. K. Sharma &bull; Submitted: Sep 28, 2026</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-circle-check"></i> Graded: 90/100</span>
+                                <button class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 font-medium">View Feedback</button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/20 dark:bg-amber-900/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-2 py-0.5 bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300 rounded">20CS505MP</span>
+                                    <h4 class="font-bold text-sm text-gray-900 dark:text-white">Mini Project Proposal & Abstract Submission</h4>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Mentor: Prof. Bosu Babu &bull; Deadline: Oct 15, 2026</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button onclick="openAssignmentModal('Mini Project Abstract')" class="text-xs font-semibold px-4 py-2 bg-mbu-gold text-mbu-blue rounded-lg hover:bg-yellow-400">Upload Document</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: FACULTY MENTOR (PROF. BOSU BABU) -->
+            <div id="content-mentor" class="tab-content hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700/60 shadow-sm p-6 sm:p-8">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-mbu-blue text-mbu-gold flex items-center justify-center font-bold text-3xl shadow-lg border-2 border-mbu-gold flex-shrink-0">
+                            PBB
+                        </div>
+                        <div class="flex-1 text-center md:text-left space-y-2">
+                            <span class="bg-blue-100 text-mbu-blue dark:bg-slate-700 dark:text-mbu-gold text-xs font-bold px-3 py-1 rounded-full uppercase">Assigned Faculty Mentor</span>
+                            <h2 class="text-2xl font-extrabold text-gray-900 dark:text-white">Prof. Bosu Babu</h2>
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Associate Professor &bull; Department of Computer Science & Engineering</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Mohan Babu University, Tirupati, Andhra Pradesh</p>
+
+                            <div class="pt-2 flex flex-wrap gap-4 text-xs justify-center md:justify-start">
+                                <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                                    <i class="fa-solid fa-envelope text-mbu-blue dark:text-mbu-gold"></i> bosubabu@mbu.ac.in
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                                    <i class="fa-solid fa-door-open text-mbu-blue dark:text-mbu-gold"></i> Cabin 204, CSE Block
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                                    <i class="fa-solid fa-clock text-mbu-blue dark:text-mbu-gold"></i> Office Hours: Mon-Wed 3:00 PM - 5:00 PM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mentor Interaction Log -->
+                    <div class="mt-8 pt-6 border-t border-gray-100 dark:border-slate-700 space-y-4">
+                        <h3 class="text-base font-bold text-gray-900 dark:text-white">Mentorship & Academic Counseling Record</h3>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-gray-50 dark:bg-slate-700/40 rounded-xl border border-gray-100 dark:border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-semibold text-xs text-mbu-blue dark:text-mbu-gold">Semester V Mid-Term Guidance</span>
+                                    <span class="text-xs text-gray-400">Sep 20, 2026</span>
+                                </div>
+                                <p class="text-xs text-gray-600 dark:text-gray-300">"Reviewed Sathvik's progress in Big Data & Machine Learning modules. Performance is commendable. Advised focusing on Mini Project dataset cleaning phase."</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 dark:bg-slate-700/40 rounded-xl border border-gray-100 dark:border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-semibold text-xs text-mbu-blue dark:text-mbu-gold">Semester V Registration Clearance</span>
+                                    <span class="text-xs text-gray-400">Aug 12, 2026</span>
+                                </div>
+                                <p class="text-xs text-gray-600 dark:text-gray-300">"Approved course selection for Semester V Data Science track including elective modules."</p>
+                            </div>
+                        </div>
+
+                        <!-- Message Box -->
+                        <div class="pt-4">
+                            <h4 class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-2">Send Message to Mentor</h4>
+                            <div class="flex gap-2">
+                                <input id="mentor-msg-input" type="text" placeholder="Type your query regarding Sem V topics or Mini Project..." class="flex-1 text-xs p-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-mbu-blue">
+                                <button onclick="sendMentorMsg()" class="bg-mbu-blue hover:bg-blue-900 text-white font-semibold text-xs px-5 py-3 rounded-xl transition-all">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL 1: ASSIGNMENT UPLOAD MODAL -->
+    <div id="assignment-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700 space-y-4">
+            <div class="flex justify-between items-center pb-3 border-b border-gray-100 dark:border-slate-700">
+                <h3 class="font-bold text-base text-gray-900 dark:text-white" id="modal-title">Upload Semester V Assignment</h3>
+                <button onclick="closeModal('assignment-modal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <form onsubmit="handleUploadSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-gray-700 dark:text-gray-300 mb-1">Select Course</label>
+                    <select class="w-full p-2.5 rounded-lg border border-gray-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
+                        <option>20CS501DS - Machine Learning Algorithms</option>
+                        <option>20CS502DS - Big Data Analytics & Ecosystems</option>
+                        <option>20CS503DS - Deep Learning Frameworks</option>
+                        <option>20CS505MP - Mini Project (Phase I)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-gray-700 dark:text-gray-300 mb-1">Attachment (PDF / ZIP)</label>
+                    <div class="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl p-6 text-center hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-mbu-blue dark:text-mbu-gold mb-2"></i>
+                        <p class="text-gray-600 dark:text-gray-300 font-medium">Click or Drag file to upload</p>
+                        <p class="text-gray-400 text-[10px] mt-1">Maximum size 25MB</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-gray-700 dark:text-gray-300 mb-1">Comments / Notes for Evaluator</label>
+                    <textarea rows="2" class="w-full p-2.5 rounded-lg border border-gray-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white" placeholder="Add submission comments..."></textarea>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="closeModal('assignment-modal')" class="flex-1 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700">Cancel</button>
+                    <button type="submit" class="flex-1 py-2.5 rounded-xl bg-mbu-blue hover:bg-blue-900 text-white font-semibold shadow">Submit File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: LAB CODE VIEWER -->
+    <div id="code-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 text-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-700 space-y-4">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+                <h3 class="font-bold text-sm text-mbu-gold" id="code-modal-title">Lab Practical Code Viewer</h3>
+                <button onclick="closeModal('code-modal')" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <pre class="bg-slate-950 p-4 rounded-xl text-xs font-mono overflow-x-auto text-emerald-400 max-h-80 custom-scrollbar" id="code-modal-content">
+# Python / PySpark Lab Execution Snippet
+import pyspark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("MBU_Sem5_DataAnalytics").getOrCreate()
+df = spark.read.csv("sathvik_dataset.csv", header=True, inferSchema=True)
+df.groupBy("category").count().show()
+            </pre>
+            <div class="text-right">
+                <button onclick="closeModal('code-modal')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-gray-100 dark:border-slate-800 py-6 mt-12 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:items-center text-xs text-gray-500 dark:text-gray-400 space-y-2 sm:space-y-0">
+            <p>&copy; 2026 Mohan Babu University, Tirupati. Student Information System.</p>
+            <p>Logged in as: <strong class="text-gray-700 dark:text-gray-200">Sathvik Reddy (24102A030075)</strong> &bull; Semester V</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- Dark Mode Toggle ---
+        function toggleDarkMode() {
+            const htmlClass = document.documentElement.classList;
+            const icon = document.getElementById('theme-icon');
+            if (htmlClass.contains('dark')) {
+                htmlClass.remove('dark');
+                icon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                htmlClass.add('dark');
+                icon.className = 'fa-solid fa-sun text-lg';
+            }
+        }
+
+        // --- Tab Switching Navigation ---
+        function switchTab(tabId) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active classes on buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-mbu-blue', 'text-mbu-blue', 'dark:text-mbu-gold', 'border-b-2', 'font-semibold');
+                btn.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400');
+            });
+
+            // Show selected content
+            const activeContent = document.getElementById('content-' + tabId);
+            if (activeContent) activeContent.classList.remove('hidden');
+
+            // Style active button
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400');
+                activeBtn.classList.add('border-mbu-blue', 'text-mbu-blue', 'dark:text-mbu-gold', 'border-b-2', 'font-semibold');
+            }
+        }
+
+        // --- Modal Control ---
+        function openAssignmentModal(title) {
+            document.getElementById('modal-title').innerText = 'Upload ' + title;
+            document.getElementById('assignment-modal').classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function handleUploadSubmit(e) {
+            e.preventDefault();
+            alert('Assignment submitted successfully for evaluation!');
+            closeModal('assignment-modal');
+        }
+
+        function openMentorModal() {
+            switchTab('mentor');
+        }
+
+        function sendMentorMsg() {
+            const input = document.getElementById('mentor-msg-input');
+            if (input.value.trim() === '') return;
+            alert('Message dispatched to Prof. Bosu Babu!');
+            input.value = '';
+        }
+
+        function viewLabCode(expId) {
+            const codeViewer = document.getElementById('code-modal-content');
+            const titleViewer = document.getElementById('code-modal-title');
+            
+            if(expId === 1) {
+                titleViewer.innerText = "Lab 1: Linear & Logistic Regression";
+                codeViewer.innerText = `# Linear Regression Script\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\n\nX = np.array([[1, 2], [2, 3], [3, 4], [4, 5]])\ny = np.array([0, 0, 1, 1])\nmodel = LogisticRegression()\nmodel.fit(X, y)\nprint("Accuracy:", model.score(X, y))`;
+            } else if(expId === 3) {
+                titleViewer.innerText = "Lab 3: MapReduce Hadoop Driver";
+                codeViewer.innerText = `// Hadoop MapReduce Word Count\npublic static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>{\n  private final static IntWritable one = new IntWritable(1);\n  private Text word = new Text();\n  public void map(Object key, Text value, Context context) {\n    // Word count logic for MBU Big Data Lab\n  }\n}`;
+            } else {
+                titleViewer.innerText = "Lab Snippet #" + expId;
+                codeViewer.innerText = "# Code file compiled and logged for Sathvik Reddy (24102A030075)\nprint('Executed successfully in Sem V Environment')";
+            }
+            
+            document.getElementById('code-modal').classList.remove('hidden');
+        }
+
+        function downloadTranscript() {
+            alert('Generating official Mohan Babu University Semester V Grade Card for Sathvik Reddy (24102A030075)...');
+        }
+
+        // --- Chart initialization on load ---
+        window.onload = function() {
+            // GPA Trend Line Chart
+            const ctxGpa = document.getElementById('gpaChart').getContext('2d');
+            new Chart(ctxGpa, {
+                type: 'line',
+                data: {
+                    labels: ['Sem I', 'Sem II', 'Sem III', 'Sem IV', 'Sem V (Current)'],
+                    datasets: [{
+                        label: 'Semester GPA',
+                        data: [8.2, 8.45, 8.60, 8.54, 8.85],
+                        borderColor: '#003366',
+                        backgroundColor: 'rgba(0, 51, 102, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#D4AF37'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 6.0,
+                            max: 10.0
+                        }
+                    }
+                }
+            });
+
+            // Attendance Doughnut Chart
+            const ctxAtt = document.getElementById('attendanceChart').getContext('2d');
+            new Chart(ctxAtt, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Attended', 'Missed'],
+                    datasets: [{
+                        data: [88.5, 11.5],
+                        backgroundColor: ['#10b981', '#f43f5e'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '70%'
+                }
+            });
+        };
+    </script>
+</body>
+</html>
